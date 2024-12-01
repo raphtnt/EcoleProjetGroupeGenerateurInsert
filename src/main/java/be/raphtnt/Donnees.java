@@ -8,8 +8,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Represents a class that provides methods for reading CSV files,
+ * retrieving random data elements from a list, and integrating these functionalities.
+ */
 public class Donnees {
 
+    /**
+     * Reads a CSV file and returns a list of string arrays representing each row of the CSV file.
+     *
+     * @param filePath the file path of the CSV file to read
+     * @return a list of string arrays where each array represents a row in the CSV file
+     */
     // Fonction pour lire un fichier CSV et retourner une liste
     public static List<String[]> readCSV(String filePath) {
         List<String[]> rows = new ArrayList<>();
@@ -29,6 +39,12 @@ public class Donnees {
         return rows; // Retourne la liste de lignes
     }
 
+    /**
+     * Retrieves a random element from a list.
+     *
+     * @param dataList The list from which to retrieve a random element.
+     * @return A random element from the provided dataList as a String array.
+     */
     // Fonction pour récupérer un élément aléatoire d'une liste
     public static String[] getRandomData(List<String[]> dataList) {
         Random random = new Random();
@@ -36,60 +52,4 @@ public class Donnees {
         return dataList.get(randomIndex); // Retourne la ligne aléatoire
     }
 
-    // Fonction principale qui intègre tout
-    public static void fichier(String[] args) {
-        
-        //Donner entrer par l'utilisateur
-        Scanner sc =new Scanner(System.in);
-        System.out.print("Entrer le nombre d'insert souhaite (entre 1 et 10 000):");
-        int nbr_insert=sc.nextInt();
-
-        // Chargement des données
-        String CountriesfilePath = ".\\NomPays.csv";
-        List<String[]> CountriesData = readCSV(CountriesfilePath);
-        String NamefilePath = ".\\Nom.csv";
-        List<String[]> NameData = readCSV(NamefilePath);
-        String FirstNamefilePath = ".\\Prenom.csv";
-        List<String[]> FirstNameData = readCSV(FirstNamefilePath);
-        String StreetfilePath = ".\\Rue.csv";
-        List<String[]> StreetData = readCSV(StreetfilePath);
-        String PostalcodeLocalityfilePath = ".\\PostalcodeLocality.csv";
-        List<String[]> PostalcodeLocalityData = readCSV(PostalcodeLocalityfilePath);
-        
-        // Boucle le nbr de fois choisi en input
-        for (int i=0; i<nbr_insert; i++){
-
-            // Récupérer des données aléatoires de chaque liste
-        String[] randomCountry = getRandomData(CountriesData);
-        String[] randomName = getRandomData(NameData);
-        String[] randomFirstName = getRandomData(FirstNameData);
-        String[] randomStreet = getRandomData(StreetData);
-        String[] randomPostalcodeLocality = getRandomData(PostalcodeLocalityData);
-
-        // Afficher les données aléatoires
-        //System.out.println("Données aléatoires sélectionnées :");
-        //System.out.println("Pays : " + String.join(", ", randomCountry));
-        //System.out.println("Nom : " + String.join(", ", randomName));
-        //System.out.println("Prénom : " + String.join(", ", randomFirstName));
-        //System.out.println("Rue : " + String.join(", ", randomStreet));
-        //System.out.println("Code postal et localité : " + String.join(", ", randomPostalcodeLocality));
-        System.out.println(String.join(", ", randomFirstName)+" "+ String.join(", ", randomName) +" "+ String.join(", ", randomStreet)+" "+ String.join(", ", randomPostalcodeLocality)+" "+String.join(", ", randomCountry));
- 
-        }
-
-
-        
-
-        // Affiche le contenu de la liste pour vérifier les données
-        //for (String[] row : PostalcodeLocalityData) {
-        //    for (String value : row) {
-        //        System.out.print(value + " ");
-        //    }
-        //    System.out.println();
-        //}
-    }
-
-    public static void main(String[] args) {
-        fichier(args);
-    }
 }
